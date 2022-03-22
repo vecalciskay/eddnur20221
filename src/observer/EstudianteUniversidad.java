@@ -23,4 +23,9 @@ public class EstudianteUniversidad implements IInversor {
             System.out.println("Se sugiere esperar");
         }
     }
+
+    @Override
+    public void metodo() {
+
+    }
 }
