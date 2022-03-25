@@ -16,7 +16,7 @@ public class Automovil {
         this.marca = marca;
         this.color = color;
         this.tamano = tamano;
-        x = 100;
+        x = 20;
         y = 100;
         cambios = new PropertyChangeSupport(this);
     }
@@ -65,8 +65,11 @@ public class Automovil {
     }
 
     public void moverDerecha() {
+        moverDerecha(5);
+    }
+    public void moverDerecha(int distancia) {
         int oldX = x;
-        x += 5;
+        x += distancia;
         cambios.firePropertyChange("POSICION", oldX, x);
     }
 
@@ -74,5 +77,16 @@ public class Automovil {
         int oldX = x;
         x -= 5;
         cambios.firePropertyChange("POSICION", oldX, x);
+    }
+
+    public void moverAnuimacion() {
+        for(int i=0; i<50; i++) {
+            moverDerecha(2);
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

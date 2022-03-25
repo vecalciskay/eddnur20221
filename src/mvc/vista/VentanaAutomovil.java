@@ -42,9 +42,26 @@ public class VentanaAutomovil extends JFrame {
 
         mnu.add(item);
 
+        item = new JMenuItem("Animacion");
+        item.addActionListener(e -> menuAutomovilAnimacion());
+
+        mnu.add(item);
+
         this.setJMenuBar(bar);
 
         this.pack();
+    }
+
+    private void menuAutomovilAnimacion() {
+        Thread t = new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                modelo.moverAnuimacion();
+            }
+        });
+
+        t.start();
     }
 
     private void menuAutomovilDerecha() {
