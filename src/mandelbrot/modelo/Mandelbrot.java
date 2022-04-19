@@ -27,9 +27,9 @@ public class Mandelbrot extends Imagen {
         maxY = 600;
 
         // -1,-1 - +1.5, +1
-        minReal = -1;
+        minReal = -1.5;
         minImg = -1;
-        maxReal = 1.5;
+        maxReal = 1;
         maxImg = 1;
 
         cambios = new PropertyChangeSupport(this);
@@ -39,12 +39,14 @@ public class Mandelbrot extends Imagen {
     }
     
     public void hacerMandelbrot() {
+        System.out.println("Comienza Mandelbrot");
         for (int i = minX; i < maxX; i++) {
             for (int j = minY; j < maxY; j++) {
                 NumeroComplejo z0 = calcularPuntoInicial(i,j);
                 int n = calcularMandelbrot(z0);
                 pixeles[i][j] = n + n*256 + n*256*256;
             }
+            System.out.println( "Calculada linea " + i);
         }
         cambios.firePropertyChange("IMAGEN",1,0);
     }
@@ -66,7 +68,7 @@ public class Mandelbrot extends Imagen {
     private int calcularMandelbrot(NumeroComplejo z0) {
         int c = 0;
         NumeroComplejo zn = z0;
-        while(zn.absAlCuadrado() < 4 ||
+        while(zn.absAlCuadrado() < 4 &&
          c < 256) {
             NumeroComplejo zn1 = zn.multiplicar(zn).sumar(z0);
             zn = zn1;
