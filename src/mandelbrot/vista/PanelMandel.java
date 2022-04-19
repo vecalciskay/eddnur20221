@@ -42,7 +42,7 @@ public class PanelMandel extends JPanel
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        if(evt.getPropertyName() != "POSICION") {
+        if(evt.getPropertyName() != "IMAGEN") {
             return;
         }
         repaint();
