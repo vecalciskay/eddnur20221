@@ -54,6 +54,8 @@ public class Imagen {
 
     }
 
+
+
     public int[][] getPixeles() {
         return pixeles;
     }
@@ -105,7 +107,15 @@ public class Imagen {
         initImagen(bi);
     }
 
+    public void setColor(int c, int i, int j){
+        pixeles[i][j] = c;
+    }
+
     public void addObserver(PaintPanel paintPanel) {
         cambios.addPropertyChangeListener(paintPanel);
+    }
+
+    public void transformada() {
+        cambios.firePropertyChange("IMAGEN", 1, 0);
     }
 }

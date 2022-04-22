@@ -1,6 +1,8 @@
 package src.paint.vista;
 
 import src.paint.modelo.Imagen;
+import src.paint.modelo.Transformacion;
+import src.paint.modelo.TransformarTonosDeGris;
 
 import javax.swing.*;
 import java.awt.*;
@@ -35,7 +37,22 @@ public class PaintFrame extends JFrame {
 
         this.getContentPane().add(btnHacer, BorderLayout.SOUTH);
 
+        JButton btnGris = new JButton("Gris");
+        btnGris.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                btnGris_clicked();
+            }
+        });
+
+        this.getContentPane().add(btnGris, BorderLayout.EAST);
+
         this.pack();
+    }
+
+    private void btnGris_clicked() {
+        Transformacion tonosDeGris = new TransformarTonosDeGris(modelo);
+        tonosDeGris.transformar();
     }
 
     private void btnHacer_clicked() {
