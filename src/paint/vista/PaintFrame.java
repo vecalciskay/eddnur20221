@@ -1,5 +1,6 @@
 package src.paint.vista;
 
+import paint.modelo.Suavizado;
 import src.paint.modelo.Imagen;
 import src.paint.modelo.Transformacion;
 import src.paint.modelo.TransformarTonosDeGris;
@@ -37,7 +38,7 @@ public class PaintFrame extends JFrame {
 
         this.getContentPane().add(btnHacer, BorderLayout.SOUTH);
 
-        JButton btnGris = new JButton("Gris");
+        JButton btnGris = new JButton("Suavizar");
         btnGris.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -51,7 +52,7 @@ public class PaintFrame extends JFrame {
     }
 
     private void btnGris_clicked() {
-        Transformacion tonosDeGris = new TransformarTonosDeGris(modelo);
+        Transformacion tonosDeGris = new Suavizado(modelo);
         tonosDeGris.transformar();
     }
 
