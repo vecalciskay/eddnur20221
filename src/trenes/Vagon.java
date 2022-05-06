@@ -24,4 +24,9 @@ public class Vagon {
     public void setSiguiente(Vagon siguiente) {
         this.siguiente = siguiente;
     }
+
+    @Override
+    public String toString() {
+        return "Vagon{"+ contenido +'}';
+    }
 }

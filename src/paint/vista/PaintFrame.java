@@ -1,5 +1,6 @@
 package src.paint.vista;
 
+import paint.modelo.BordesKernel;
 import paint.modelo.Suavizado;
 import src.paint.modelo.Imagen;
 import src.paint.modelo.Transformacion;
@@ -52,7 +53,7 @@ public class PaintFrame extends JFrame {
     }
 
     private void btnGris_clicked() {
-        Transformacion tonosDeGris = new Suavizado(modelo);
+        Transformacion tonosDeGris = new BordesKernel(modelo);
         tonosDeGris.transformar();
     }
 
