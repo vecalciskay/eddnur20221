@@ -1,6 +1,10 @@
 package listas;
 
-public class Lista<E> {
+import java.util.Iterator;
+import java.util.Spliterator;
+import java.util.function.Consumer;
+
+public class Lista<E> implements Iterable<E> {
     private Nodo<E> raiz;
 
     public Lista() {
@@ -27,6 +31,20 @@ public class Lista<E> {
         }
 
         actual.setSiguiente(nuevo);
+    }
+
+    public E obtener(int pos) {
+        if (pos == 0)
+            return raiz.getContenido();
+
+        int posActual = 0;
+        Nodo<E> actual = raiz;
+        while(posActual < pos && actual != null) {
+            actual = actual.getSiguiente();
+            posActual += 1;
+        }
+
+        return actual.getContenido();
     }
 
     public Nodo<E> getRaiz() {
@@ -56,6 +74,11 @@ public class Lista<E> {
         return result.toString();
     }
 
+    @Override
+    public Iterator<E> iterator() {
+        return new IteradorLista<>(raiz);
+    }
+
     static class Nodo<E> {
         private E contenido;
         private Nodo<E> siguiente;
@@ -80,6 +103,23 @@ public class Lista<E> {
         @Override
         public String toString() {
             return "Nodo{" + contenido +'}';
+        }
+    }
+
+    static class IteradorLista<E> implements Iterator<E> {
+
+        public IteradorLista(Nodo<E> r) {
+
+        }
+
+        @Override
+        public boolean hasNext() {
+            return false;
+        }
+
+        @Override
+        public E next() {
+            return null;
         }
     }
 }
