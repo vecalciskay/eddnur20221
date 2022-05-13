@@ -1,20 +1,21 @@
 package listas;
 
 import java.util.Iterator;
-import java.util.Spliterator;
-import java.util.function.Consumer;
 
 public class Lista<E> implements Iterable<E> {
     private Nodo<E> raiz;
-
+    private int cantidad;
     public Lista() {
+
         this.raiz = null;
+        cantidad = 0;
     }
 
     public void insertar(E o) {
         Nodo<E> nuevo = new Nodo<>(o);
         nuevo.setSiguiente(raiz);
         raiz = nuevo;
+        cantidad++;
     }
 
     public void adicionar(E o) {
@@ -22,6 +23,7 @@ public class Lista<E> implements Iterable<E> {
 
         if (raiz == null) {
             raiz = nuevo;
+            cantidad++;
             return;
         }
 
@@ -31,6 +33,7 @@ public class Lista<E> implements Iterable<E> {
         }
 
         actual.setSiguiente(nuevo);
+        cantidad++;
     }
 
     public E obtener(int pos) {
@@ -51,7 +54,7 @@ public class Lista<E> implements Iterable<E> {
         return raiz;
     }
 
-    public void setRaiz(Nodo<E> raiz) {
+    private void setRaiz(Nodo<E> raiz) {
         this.raiz = raiz;
     }
 
@@ -77,6 +80,42 @@ public class Lista<E> implements Iterable<E> {
     @Override
     public Iterator<E> iterator() {
         return new IteradorLista<>(raiz);
+    }
+
+    public int tamano() {
+        /*Nodo<E> actual = raiz;
+        int resultado = 0;
+        while(actual != null) {
+            resultado++;
+            actual = actual.getSiguiente();
+        }
+        return resultado;*/
+        return this.cantidad;
+    }
+
+    public void eliminar(int pos) {
+
+        if (pos < 0 || pos > cantidad) {
+            throw new ArrayIndexOutOfBoundsException("La lista solo tiene " + cantidad);
+        }
+
+        if (pos == 0){
+            raiz = raiz.getSiguiente();
+            cantidad--;
+            return;
+        }
+
+        Nodo<E> actual = raiz;
+        int posActual = 0;
+        while(posActual < (pos-1)) {
+            posActual++;
+            actual = actual.getSiguiente();
+        }
+
+        Nodo<E> siguienteDelSiguiente = actual.getSiguiente().getSiguiente();
+        actual.getSiguiente().setSiguiente(null);
+        actual.setSiguiente(siguienteDelSiguiente);
+        cantidad--;
     }
 
     static class Nodo<E> {
@@ -108,18 +147,21 @@ public class Lista<E> implements Iterable<E> {
 
     static class IteradorLista<E> implements Iterator<E> {
 
+        private Nodo<E> actual;
         public IteradorLista(Nodo<E> r) {
-
+            actual = r;
         }
 
         @Override
         public boolean hasNext() {
-            return false;
+            return actual != null;
         }
 
         @Override
         public E next() {
-            return null;
+            E o = actual.getContenido();
+            actual = actual.getSiguiente();
+            return o;
         }
     }
 }

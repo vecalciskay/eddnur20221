@@ -19,18 +19,24 @@ public class TestLista1 {
 
         System.out.println(l);
 
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < l.tamano(); i++) {
             System.out.println("For " + i + ": " + l.obtener(i));
         }
 
         Iterator<String> iter = l.iterator();
         while(iter.hasNext()) {
             String elemento = iter.next();
-            System.out.println(elemento);
+            System.out.println("Iterador: " + elemento);
+        }
+
+        try {
+            l.eliminar(2);
+        } catch(Exception q) {
+            System.out.println("No se puede eliminar: " + q.getMessage());
         }
 
         for (String s: l) {
-            System.out.println(s);
+            System.out.println("foreach: " + s);
         }
     }
 }
