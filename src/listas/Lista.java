@@ -3,8 +3,8 @@ package listas;
 import java.util.Iterator;
 
 public class Lista<E> implements Iterable<E> {
-    private Nodo<E> raiz;
-    private int cantidad;
+    protected Nodo<E> raiz;
+    protected int cantidad;
     public Lista() {
 
         this.raiz = null;

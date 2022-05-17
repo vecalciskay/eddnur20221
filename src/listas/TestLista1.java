@@ -38,5 +38,18 @@ public class TestLista1 {
         for (String s: l) {
             System.out.println("foreach: " + s);
         }
+
+        ListaOrdenada<String> lo = new ListaOrdenada<>();
+
+        lo.insertar("Hugo");
+        lo.insertar("Paco");
+        lo.insertar("Luis");
+        lo.insertar("Uno");
+        lo.insertar("Dos");
+        lo.insertar("Tres");
+
+        System.out.println(lo);
+
+        ListaOrdenada<Perro> p1 = new ListaOrdenada<>();
     }
 }
