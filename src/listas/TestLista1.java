@@ -4,7 +4,7 @@ import java.util.Iterator;
 
 public class TestLista1 {
     public static void main(String[] args) {
-        Lista<String> l = new Lista();
+        ListaDoble<String> l = new ListaDoble<>();
 
         l.insertar("Hugo");
         l.insertar("Paco");
@@ -30,7 +30,7 @@ public class TestLista1 {
         }
 
         try {
-            l.eliminar(2);
+            l.eliminar(6);
         } catch(Exception q) {
             System.out.println("No se puede eliminar: " + q.getMessage());
         }
@@ -39,17 +39,17 @@ public class TestLista1 {
             System.out.println("foreach: " + s);
         }
 
-        ListaOrdenada<String> lo = new ListaOrdenada<>();
-
-        lo.insertar("Hugo");
-        lo.insertar("Paco");
-        lo.insertar("Luis");
-        lo.insertar("Uno");
-        lo.insertar("Dos");
-        lo.insertar("Tres");
-
-        System.out.println(lo);
-
-        ListaOrdenada<Perro> p1 = new ListaOrdenada<>();
+//        ListaOrdenada<String> lo = new ListaOrdenada<>();
+//
+//        lo.insertar("Hugo");
+//        lo.insertar("Paco");
+//        lo.insertar("Luis");
+//        lo.insertar("Uno");
+//        lo.insertar("Dos");
+//        lo.insertar("Tres");
+//
+//        System.out.println(lo);
+//
+//        ListaOrdenada<Perro> p1 = new ListaOrdenada<>();
     }
 }
