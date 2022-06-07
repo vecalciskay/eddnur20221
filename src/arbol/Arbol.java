@@ -5,7 +5,7 @@ import listas.Lista;
 import java.awt.*;
 
 public class Arbol<E> {
-    private Nodo<E> raiz;
+    protected Nodo<E> raiz;
 
     public Arbol() {
         this.raiz = null;
@@ -36,12 +36,12 @@ public class Arbol<E> {
 
     public void dibujar(Graphics g, int anchoTotal, int altoTotal) {
 
-        raiz.dibujar(g, anchoTotal, altoTotal, 10);
+        raiz.dibujar(g, anchoTotal, 0, 10);
 
     }
 
 
-    class Nodo<E> {
+    public static class Nodo<E> {
         private String id;
         private E contenido;
         private Lista<Nodo<E>> hijos;
@@ -114,11 +114,45 @@ public class Arbol<E> {
             return null;
         }
 
-        public void dibujar(Graphics g, int anchoTotal, int altoTotal, int yActual) {
-//            int anchoPorHijo = anchoTotal / hijos.tamano();
+        public void dibujar(Graphics g, int anchoTotal, int xActual, int yActual) {
             int mitad = anchoTotal / 2;
-            g.drawOval(mitad - ANCHO_NODO / 2, yActual, ANCHO_NODO, ANCHO_NODO);
-            g.drawString(contenido.toString(), mitad + ANCHO_NODO / 3, yActual + ANCHO_NODO / 2);
+            int padding = 18;
+            g.drawOval(
+                    xActual + mitad - ANCHO_NODO / 2,
+                    yActual,
+                    ANCHO_NODO,
+                    ANCHO_NODO
+            );
+            g.drawString(
+                    contenido.toString(),
+                    xActual + mitad - (ANCHO_NODO / 2) + padding,
+                    yActual + ANCHO_NODO / 2
+            );
+            for (int i = 0; i < hijos.tamano(); i++) {
+                Nodo<E> hijo = hijos.obtener(i);
+                int xActualHijo = xActual + (anchoTotal / hijos.tamano()) * i;
+                int anchoTotalHijo = anchoTotal / hijos.tamano();
+                int yActualHijo = yActual + ANCHO_NODO * 2;
+                hijo.dibujar(
+                        g,
+                        anchoTotalHijo,
+                        xActualHijo,
+                        yActualHijo
+                );
+                g.drawLine(
+                        xActual + mitad,
+                        yActual + ANCHO_NODO,
+                        xActualHijo + anchoTotalHijo / 2,
+                        yActualHijo
+                );
+            }
+        }
+
+        public void setPadre(Nodo<E> padre) {
+            if (padre == null) {
+                return;
+            }
+            padre.getHijos().adicionar(padre);
         }
     }
 }
