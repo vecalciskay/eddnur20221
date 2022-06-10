@@ -33,4 +33,9 @@ public class Operador extends ElementoAritmetico {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
+    @Override
+    public String toString() {
+        return simbolo;
+    }
 }

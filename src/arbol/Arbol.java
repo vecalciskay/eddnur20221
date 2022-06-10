@@ -152,7 +152,13 @@ public class Arbol<E> {
             if (padre == null) {
                 return;
             }
-            padre.getHijos().adicionar(padre);
+            for (Nodo<E> hijo :
+                    padre.hijos) {
+                if (hijo.equals(this)) {
+                    return;
+                }
+            }
+            padre.getHijos().adicionar(this);
         }
     }
 }
